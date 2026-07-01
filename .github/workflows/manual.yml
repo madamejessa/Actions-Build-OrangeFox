@@ -103,6 +103,7 @@ jobs:
       with:
         max-size: 10G
         key: orangefox-${{ inputs.MANIFEST_BRANCH }}-${{ inputs.DEVICE_NAME }}
+        dir: /tmp/ccache
 
     - name: Set-up Manifest
       run: |
@@ -143,7 +144,7 @@ jobs:
         export ALLOW_MISSING_DEPENDENCIES=true
         export USE_CCACHE=1
         export CCACHE_EXEC=$(which ccache)
-        export CCACHE_DIR=/home/runner/.ccache
+        export CCACHE_DIR=/tmp/ccache
         set -e
 
         if [ "${{ inputs.MANIFEST_BRANCH }}" = "12.1" ];
